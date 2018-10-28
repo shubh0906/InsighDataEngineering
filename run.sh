@@ -11,5 +11,5 @@ if [ $? -eq 0 ]
 then
   echo "compile worked!"
   cd src
-  java  $CLASS_NAME ../input/H1B_FY_2014.csv
+  java  $CLASS_NAME ../input/h1b_input.csv
 fi

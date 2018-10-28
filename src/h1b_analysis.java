@@ -42,8 +42,8 @@ class solution{
     }
     public static void main(String[] ss) throws Exception{
         long startTime   = System.nanoTime();
-        //System.out.println(ss[0]);
-        BufferedReader br = new BufferedReader(new FileReader("../input/H1B_FY_2014.csv"));
+        System.out.println(ss[0]);
+        BufferedReader br = new BufferedReader(new FileReader(ss[0]));
         String line = br.readLine();
         String[] columns = line.split(";");
         int occuptionIndex = 0;
@@ -117,7 +117,7 @@ class solution{
         }
         i--;
         PrintWriter pw = new PrintWriter(new FileWriter("../output/top_10_occupations.txt"));
-        pw.println("TOP_STATES;NUMBER_CERTIFIED_APPLICATIONS;PERCENTAGE");
+        pw.println("TOP_OCCUPATIONS;NUMBER_CERTIFIED_APPLICATIONS;PERCENTAGE");
         for(;i>=0;i--)
             pw.println(arr[i]);
         i=0;
@@ -126,7 +126,7 @@ class solution{
         i--;
         pw.close();
         pw = new PrintWriter(new FileWriter("../output/top_10_states.txt"));
-        pw.println("TOP_OCCUPATIONS;NUMBER_CERTIFIED_APPLICATIONS;PERCENTAGE");
+        pw.println("TOP_STATES;NUMBER_CERTIFIED_APPLICATIONS;PERCENTAGE");
         for(;i>=0;i--)
             pw.println(arr[i]);
         pw.close();
