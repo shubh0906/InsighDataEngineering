@@ -5,3 +5,7 @@
 
 # Problem
 The problem presented here is to analyze past year immigration data trends on H1B and give mechanism to calculate **Top 10 Occupations** and **Top 10 States** for **certified** visa applications.
+
+
+#Approach
+* __`ASSUMPTIONS`__:
