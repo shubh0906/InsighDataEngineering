@@ -10,3 +10,5 @@ The problem presented here is to analyze past year immigration data trends on H1
 # Approach
 * __`ASSUMPTIONS`__
     * The name of the input file will always be **h1_input.csv** and always a semicolon separated (";") format.
+    * The columns in the input have been considered from **File Structure** for 2009-2017, any different **File Structure** might break the code.
+    
