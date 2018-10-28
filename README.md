@@ -8,5 +8,5 @@ The problem presented here is to analyze past year immigration data trends on H1
 
 
 # Approach
-     __`ASSUMPTIONS`__
-     * Hello
+* __`ASSUMPTIONS`__
+    * The name of the input file will always be **h1_input.csv** and always a semicolon separated (";") format.
