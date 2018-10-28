@@ -58,7 +58,7 @@ class solution{
                 occuptionIndex = i;
             else if(columns[i].equalsIgnoreCase("CASE_STATUS")|| columns[i].equalsIgnoreCase("STATUS")|| columns[i].equalsIgnoreCase("APPROVAL_STATUS"))
                 certificateIndex = i;
-            else if(columns[i].equalsIgnoreCase("WORKSITE_STATE")|| columns[i].equalsIgnoreCase("LCA_CASE_WORKLOC1_STATE")|| columns[i].equalsIgnoreCase("STAEE_1"))
+            else if(columns[i].equalsIgnoreCase("WORKSITE_STATE")|| columns[i].equalsIgnoreCase("LCA_CASE_WORKLOC1_STATE")|| columns[i].equalsIgnoreCase("STATE_1"))
                 stateIndex = i;
         }
         
