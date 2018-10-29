@@ -47,18 +47,17 @@ class solution{
             fileName = ss[0];
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String line = br.readLine();
-        
         String[] columns = line.split(";");
         
         int occuptionIndex = 0,stateIndex = 0,certificateIndex = 0;
         
         // getting the column indexes for the information we need
         for(int i=0; i<columns.length;i++){
-            if(columns[i].equalsIgnoreCase("SOC_NAME")|| columns[i].equalsIgnoreCase("LCA_CASE_SOC_NAME")|| columns[i].equalsIgnoreCase("OCCUPATIONAL_TITLE"))
+            if(columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("SOC_NAME")|| columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("LCA_CASE_SOC_NAME")|| columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("OCCUPATIONAL_TITLE"))
                 occuptionIndex = i;
-            else if(columns[i].equalsIgnoreCase("CASE_STATUS")|| columns[i].equalsIgnoreCase("STATUS")|| columns[i].equalsIgnoreCase("APPROVAL_STATUS"))
+            else if(columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("CASE_STATUS")|| columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("STATUS")|| columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("APPROVAL_STATUS"))
                 certificateIndex = i;
-            else if(columns[i].equalsIgnoreCase("WORKSITE_STATE")|| columns[i].equalsIgnoreCase("LCA_CASE_WORKLOC1_STATE")|| columns[i].equalsIgnoreCase("STATE_1"))
+            else if(columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("WORKSITE_STATE")|| columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("LCA_CASE_WORKLOC1_STATE")|| columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("STATE_1"))
                 stateIndex = i;
         }
         
@@ -68,7 +67,7 @@ class solution{
         //readin the csv file and retrieving and storing relevant info in two HashMap 
         while((line = br.readLine())!=null){
             String[] data = line.split(";");
-            if(data[certificateIndex].equalsIgnoreCase("CERTIFIED")){
+            if(data[certificateIndex].replaceAll("^\"|\"$", "").equalsIgnoreCase("CERTIFIED")){
                 Node.totalCertified++;
 
                 String state = data[stateIndex].replaceAll("^\"|\"$", "");
