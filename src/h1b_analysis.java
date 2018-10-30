@@ -12,7 +12,7 @@ class solution{
             this.count = 1;
             this.str = s;
         }
-        //increment count of particular state/occupation
+        //increment count of state/occupation
         public void inc(){
             this.count++;
         }
@@ -39,6 +39,40 @@ class solution{
             if(ret==0)
                 return n2.str.compareTo(n1.str);
             return ret;
+        }
+    }
+    /* Printint the content of Priority Queue in file in sorted order */
+    public static void printInFile(PriorityQueue<Node> pq, String fileName,String firstLine )throws Exception{
+        Node[] arr = new Node[10];
+        int i=0;
+        // reversin g the order of Priority Queue for occupations
+        while(pq.size()>0){
+            arr[i++]=pq.poll();
+        }
+        i--;
+        // writing in the occupations output file
+        PrintWriter pw = new PrintWriter(new FileWriter(fileName));
+        pw.println(firstLine);
+        for(;i>=0;i--)
+            pw.println(arr[i]);
+        
+        pw.close();
+    }
+    /* get elements from the HashMap and populate the top elements in Priority Queue*/
+    public static void getTopElements(Map<String,Node> map,PriorityQueue<Node> pq, int size){
+        for(Map.Entry<String,Node> e : map.entrySet()){
+            if(pq.size()==size){
+                Node temp = pq.peek();
+                int comp = temp.compareTo(e.getValue()); 
+                if(comp>0){
+                    pq.poll();
+                    pq.add(e.getValue());
+                }
+            }
+            else{
+                pq.add(e.getValue());
+            }
+            
         }
     }
     public static void main(String[] ss) throws Exception{
@@ -89,63 +123,15 @@ class solution{
 
         //Traversing the occupationCount HashMap and inserting and maintaining the size of Priority Queue with top 10 Node in asc order.
         PriorityQueue<Node> occupationPQ = new PriorityQueue<Node>(10, new NodeComprator()); 
-        for(Map.Entry<String,Node> e : occupationCount.entrySet()){
-            if(occupationPQ.size()==10){
-                Node temp = occupationPQ.peek();
-                int comp = temp.compareTo(e.getValue()); 
-                if(comp>0){
-                    occupationPQ.poll();
-                    occupationPQ.add(e.getValue());
-                }
-            }
-            else{
-                occupationPQ.add(e.getValue());
-            }
-            
-        }
+        getTopElements(occupationCount, occupationPQ, 10);
         
         //Traversing the stateCount HashMap and inserting and maintaining the size of Priority Queue with top 10 Node in asc order.
         PriorityQueue<Node> statePQ = new PriorityQueue<Node>(10, new NodeComprator()); 
-        for(Map.Entry<String,Node> e : stateCount.entrySet()){
-            if(statePQ.size()==10){
-                Node temp = statePQ.peek();
-                int comp = temp.compareTo(e.getValue()); 
-               if(comp>0){
-                    statePQ.poll();
-                    statePQ.add(e.getValue());
-                }
-            }
-            else{
-                statePQ.add(e.getValue());
-            }
-        }  
-        Node[] arr = new Node[10];
-        int i=0;
+        getTopElements(stateCount, statePQ, 10);
 
-        // reversin g the order of Priority Queue for occupations
-        while(occupationPQ.size()>0){
-            arr[i++]=occupationPQ.poll();
-        }
-        i--;
-        // writing in the occupations output file
-        PrintWriter pw = new PrintWriter(new FileWriter("../output/top_10_occupations.txt"));
-        pw.println("TOP_OCCUPATIONS;NUMBER_CERTIFIED_APPLICATIONS;PERCENTAGE");
-        for(;i>=0;i--)
-            pw.println(arr[i]);
-        
-        pw.close();
-        i=0;
-        
-        // reversin g the order of Priority Queue for states
-        while(statePQ.size()>0)
-            arr[i++]=statePQ.poll();
-        i--;
-        // writing in the states output file
-        pw = new PrintWriter(new FileWriter("../output/top_10_states.txt"));
-        pw.println("TOP_STATES;NUMBER_CERTIFIED_APPLICATIONS;PERCENTAGE");
-        for(;i>=0;i--)
-            pw.println(arr[i]);
-        pw.close();
+        //printing the content in output file
+        printInFile(occupationPQ,"../output/top_10_occupations.txt","TOP_OCCUPATIONS;NUMBER_CERTIFIED_APPLICATIONS;PERCENTAGE");
+        printInFile(statePQ,"../output/top_10_states.txt","TOP_STATES;NUMBER_CERTIFIED_APPLICATIONS;PERCENTAGE");
 
         long endTime   = System.nanoTime();
         long totalTime = endTime - startTime;
