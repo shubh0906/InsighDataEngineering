@@ -87,44 +87,44 @@ class solution{
             }
         }
 
-        //Traversing the occupationCount HashMap and inserting and maintaining the size of Priority Queue 
-        PriorityQueue<Node> pq = new PriorityQueue<Node>(10, new NodeComprator()); 
+        //Traversing the occupationCount HashMap and inserting and maintaining the size of Priority Queue with top 10 Node in asc order.
+        PriorityQueue<Node> occupationPQ = new PriorityQueue<Node>(10, new NodeComprator()); 
         for(Map.Entry<String,Node> e : occupationCount.entrySet()){
-            if(pq.size()==10){
-                Node temp = pq.peek();
+            if(occupationPQ.size()==10){
+                Node temp = occupationPQ.peek();
                 int comp = temp.compareTo(e.getValue()); 
                 if(comp>0){
-                    pq.poll();
-                    pq.add(e.getValue());
+                    occupationPQ.poll();
+                    occupationPQ.add(e.getValue());
                 }
             }
             else{
-                pq.add(e.getValue());
+                occupationPQ.add(e.getValue());
             }
             
         }
         
-        //Traversing the stateCount HashMap and inserting and maintaining the size of Priority Queue 
-        PriorityQueue<Node> pq2 = new PriorityQueue<Node>(10, new NodeComprator()); 
+        //Traversing the stateCount HashMap and inserting and maintaining the size of Priority Queue with top 10 Node in asc order.
+        PriorityQueue<Node> statePQ = new PriorityQueue<Node>(10, new NodeComprator()); 
         for(Map.Entry<String,Node> e : stateCount.entrySet()){
-            if(pq2.size()==10){
-                Node temp = pq2.peek();
+            if(statePQ.size()==10){
+                Node temp = statePQ.peek();
                 int comp = temp.compareTo(e.getValue()); 
                if(comp>0){
-                    pq2.poll();
-                    pq2.add(e.getValue());
+                    statePQ.poll();
+                    statePQ.add(e.getValue());
                 }
             }
             else{
-                pq2.add(e.getValue());
+                statePQ.add(e.getValue());
             }
         }  
         Node[] arr = new Node[10];
         int i=0;
 
         // reversin g the order of Priority Queue for occupations
-        while(pq.size()>0){
-            arr[i++]=pq.poll();
+        while(occupationPQ.size()>0){
+            arr[i++]=occupationPQ.poll();
         }
         i--;
         // writing in the occupations output file
@@ -137,8 +137,8 @@ class solution{
         i=0;
         
         // reversin g the order of Priority Queue for states
-        while(pq2.size()>0)
-            arr[i++]=pq2.poll();
+        while(statePQ.size()>0)
+            arr[i++]=statePQ.poll();
         i--;
         // writing in the states output file
         pw = new PrintWriter(new FileWriter("../output/top_10_states.txt"));
