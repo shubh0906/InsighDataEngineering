@@ -12,6 +12,7 @@ class solution{
             this.count = 1;
             this.str = s;
         }
+        //increment count of particular state/occupation
         public void inc(){
             this.count++;
         }
@@ -26,7 +27,7 @@ class solution{
         public int compareTo(Node n){
             int ret = n.count-this.count;
             if(ret==0)
-                return n.str.compareTo(this.str);
+                return this.str.compareTo(n.str);
             return ret;
         }
     }
@@ -42,6 +43,7 @@ class solution{
     }
     public static void main(String[] ss) throws Exception{
         long startTime   = System.nanoTime();
+        
         String fileName = "../input/h1b_input.csv";
         if(ss.length>0)
             fileName = ss[0];
@@ -53,11 +55,12 @@ class solution{
         
         // getting the column indexes for the information we need
         for(int i=0; i<columns.length;i++){
-            if(columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("SOC_NAME")|| columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("LCA_CASE_SOC_NAME")|| columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("OCCUPATIONAL_TITLE"))
+            String column = columns[i].replaceAll("^\"|\"$", "");
+            if(column.equalsIgnoreCase("SOC_NAME")|| column.equalsIgnoreCase("LCA_CASE_SOC_NAME")|| column.equalsIgnoreCase("OCCUPATIONAL_TITLE"))
                 occuptionIndex = i;
-            else if(columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("CASE_STATUS")|| columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("STATUS")|| columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("APPROVAL_STATUS"))
+            else if(column.equalsIgnoreCase("CASE_STATUS")|| column.equalsIgnoreCase("STATUS")|| column.equalsIgnoreCase("APPROVAL_STATUS"))
                 certificateIndex = i;
-            else if(columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("WORKSITE_STATE")|| columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("LCA_CASE_WORKLOC1_STATE")|| columns[i].replaceAll("^\"|\"$", "").equalsIgnoreCase("STATE_1"))
+            else if(column.equalsIgnoreCase("WORKSITE_STATE")|| column.equalsIgnoreCase("LCA_CASE_WORKLOC1_STATE")|| column.equalsIgnoreCase("STATE_1"))
                 stateIndex = i;
         }
         
