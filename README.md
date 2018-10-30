@@ -16,7 +16,11 @@ First read the input file line by line and for all those applications whose case
 
 Now when we have count of each state and occupation, we can a take a two Priority Queue(min-heap) for state and occupation both of size 10. While traversing the HashMap,if the element is greater than the smallest element in the Priority Queue then smallest element is replaced by this element. Removal of smallest element from Priority Queue is **O(1)** and insertion of element is **O(log 10)** since the size of Priority Queue is 10 it can be considered **O(1)**. Whole time complexity of this operation over the HashMap will be **O(n)** with space complexity of **O(1)**, since size of Priority Queue is constant.
 
-Now Priority Queue consists of top 10 elements sorted by __`NUMBER_CERTIFIED_APPLICATIONS`__, and in case of a tie, alphabetically by __`TOP_OCCUPATIONS`__/__`TOP_STATES`__ but in reverse order. So we reverse the Priority Queue and store the results in Output file.
+
+Now Priority Queue consists of top 10 elements sorted by __`NUMBER_CERTIFIED_APPLICATIONS`__, and in case of a tie, alphabetically by 
+__`TOP_OCCUPATIONS`__/__`TOP_STATES`__ but in reverse order. So we reverse the Priority Queue and store the results in Output file.
+
+Overall, run time complexity will be **O(n)** and space complexity **O(n)**.
 
 # Run
 
