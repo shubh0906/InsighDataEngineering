@@ -41,7 +41,7 @@ class solution{
             return ret;
         }
     }
-    /* Printint the content of Priority Queue in file in sorted order */
+    /* Print the content of Priority Queue in file in sorted order */
     public static void printInFile(PriorityQueue<Node> pq, String fileName,String firstLine )throws Exception{
         Node[] arr = new Node[10];
         int i=0;
